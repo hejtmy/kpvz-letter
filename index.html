@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Otevřený dopis — KPVZ, FHS UK</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Upright:wght@300;400;500&family=Instrument+Sans:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --ink:        #1a1814;
+      --ink-soft:   #3d3a35;
+      --ink-muted:  #7a7468;
+      --ink-ghost:  #b5b0a8;
+      --paper:      #f5f2ec;
+      --paper-warm: #ede9e0;
+      --rule:       #c8c2b6;
+      --accent:     #8b2020;
+      --accent-soft:#b84040;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--paper);
+      color: var(--ink);
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 1.125rem;
+      line-height: 1.8;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Subtle paper texture overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 1000;
+      opacity: 0.6;
+    }
+
+    /* ─── Layout ─── */
+
+    .page-wrap {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* ─── Header ─── */
+
+    header {
+      padding: 3.5rem 0 2rem;
+      position: relative;
+    }
+
+    .institution-line {
+      display: flex;
+      align-items: baseline;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .institution-link {
+      font-family: 'Instrument Sans', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      text-decoration: none;
+      border-bottom: 1px solid var(--rule);
+      padding-bottom: 1px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .institution-link:hover {
+      color: var(--ink);
+      border-color: var(--ink-soft);
+    }
+
+    .header-rule {
+      margin: 1.5rem 0 0;
+      border: none;
+      border-top: 2px solid var(--ink);
+      position: relative;
+    }
+
+    .header-rule::after {
+      content: '';
+      position: absolute;
+      top: 3px;
+      left: 0;
+      right: 0;
+      border-top: 1px solid var(--rule);
+    }
+
+    /* ─── Document label ─── */
+
+    .doc-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 1.25rem 0 0;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .doc-type {
+      font-family: 'Instrument Sans', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .doc-date {
+      font-family: 'Instrument Sans', sans-serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      color: var(--ink-muted);
+    }
+
+    /* ─── Title ─── */
+
+    .letter-title {
+      padding: 3rem 0 2.5rem;
+    }
+
+    .letter-title h1 {
+      font-family: 'Cormorant Upright', serif;
+      font-size: clamp(2rem, 5vw, 3.25rem);
+      font-weight: 300;
+      line-height: 1.2;
+      letter-spacing: 0.01em;
+      color: var(--ink);
+    }
+
+    .letter-title h1 em {
+      font-style: italic;
+      color: var(--ink-soft);
+    }
+
+    /* ─── Letter body ─── */
+
+    .letter-body {
+      padding-bottom: 3rem;
+    }
+
+    .salutation {
+      font-style: italic;
+      color: var(--ink-soft);
+      margin-bottom: 2rem;
+      font-size: 1.05rem;
+    }
+
+    .letter-body p {
+      margin-bottom: 1.6rem;
+      text-align: justify;
+      hyphens: auto;
+      hanging-punctuation: first;
+    }
+
+    .letter-body p:last-of-type {
+      margin-bottom: 0;
+    }
+
+    /* Section divider */
+    .section-note {
+      margin: 2.5rem 0;
+      padding: 1.25rem 1.5rem;
+      border-left: 3px solid var(--accent);
+      background: var(--paper-warm);
+      font-style: italic;
+      color: var(--ink-soft);
+      font-size: 1rem;
+    }
+
+    /* ─── Closing ─── */
+
+    .letter-closing {
+      padding: 2.5rem 0 3rem;
+      border-top: 1px solid var(--rule);
+    }
+
+    .closing-phrase {
+      font-style: italic;
+      color: var(--ink-soft);
+      margin-bottom: 2.5rem;
+      font-size: 1.05rem;
+    }
+
+    .signatories {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+
+    .signatory-group {
+      margin-bottom: 2rem;
+    }
+
+    .signatory-label {
+      font-family: 'Instrument Sans', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      margin-bottom: 0.75rem;
+    }
+
+    .signatory-list {
+      list-style: none;
+    }
+
+    .signatory-list li {
+      font-family: 'EB Garamond', serif;
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: var(--ink);
+      padding: 0.3rem 0;
+      border-bottom: 1px solid var(--paper-warm);
+      position: relative;
+    }
+
+    .signatory-list li::before {
+      content: '';
+      position: absolute;
+      left: -1rem;
+      top: 50%;
+      width: 0.4rem;
+      height: 1px;
+      background: var(--rule);
+      transform: translateY(-50%);
+    }
+
+    .signatory-primary li {
+      font-size: 1.15rem;
+    }
+
+    .signatory-primary li::before {
+      background: var(--ink-soft);
+    }
+
+    /* ─── Footer ─── */
+
+    footer {
+      padding: 2rem 0 2.5rem;
+      border-top: 1px solid var(--rule);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-back {
+      font-family: 'Instrument Sans', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      color: var(--ink-muted);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: color 0.2s;
+    }
+
+    .footer-back:hover {
+      color: var(--ink);
+    }
+
+    .footer-back svg {
+      width: 12px;
+      height: 12px;
+    }
+
+    .footer-easter {
+      position: relative;
+    }
+
+    .paranoia-link {
+      font-family: 'Instrument Sans', sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.06em;
+      color: var(--ink-ghost);
+      text-decoration: none;
+      opacity: 0.5;
+      transition: opacity 0.3s, color 0.3s;
+      cursor: help;
+    }
+
+    .paranoia-link:hover {
+      opacity: 1;
+      color: var(--accent-soft);
+    }
+
+    .paranoia-link::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      bottom: 1.4rem;
+      right: 0;
+      background: var(--ink);
+      color: var(--paper);
+      font-size: 0.65rem;
+      letter-spacing: 0.05em;
+      padding: 0.4rem 0.7rem;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s;
+      font-style: italic;
+    }
+
+    .paranoia-link:hover::after {
+      opacity: 1;
+    }
+
+    /* ─── Fade-in animation ─── */
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    header      { animation: fadeUp 0.7s ease both; }
+    .doc-meta   { animation: fadeUp 0.7s 0.1s ease both; }
+    .letter-title { animation: fadeUp 0.7s 0.2s ease both; }
+    .letter-body  { animation: fadeUp 0.7s 0.35s ease both; }
+    .letter-closing { animation: fadeUp 0.7s 0.5s ease both; }
+    footer        { animation: fadeUp 0.7s 0.6s ease both; }
+
+    /* ─── Responsive ─── */
+
+    @media (max-width: 600px) {
+      .page-wrap {
+        padding: 0 1.25rem;
+      }
+
+      header {
+        padding: 2rem 0 1.5rem;
+      }
+
+      .letter-body p {
+        text-align: left;
+      }
+
+      footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+      }
+
+      .paranoia-link::after {
+        right: auto;
+        left: 0;
+      }
+    }
+
+    /* ─── Print ─── */
+
+    @media print {
+      body::before { display: none; }
+      body { background: white; font-size: 11pt; }
+      header, .doc-meta, .letter-title, .letter-body, .letter-closing, footer {
+        animation: none;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="page-wrap">
+
+  <!-- Header -->
+  <header>
+    <div class="institution-line">
+      <a href="https://fhspsych.cz" class="institution-link" target="_blank" rel="noopener">
+        Katedra psychologie věd o životě (KPVZ)
+      </a>
+      <span style="color: var(--rule); font-family: 'Instrument Sans', sans-serif; font-size: 0.72rem;">·</span>
+      <a href="https://fhspsych.cz" class="institution-link" target="_blank" rel="noopener">
+        Fakulta humanitních studií, Univerzita Karlova
+      </a>
+    </div>
+    <hr class="header-rule">
+  </header>
+
+  <!-- Document meta -->
+  <div class="doc-meta">
+    <span class="doc-type">Otevřený dopis</span>
+    <span class="doc-date">Praha, duben 2025</span>
+  </div>
+
+  <!-- Title -->
+  <div class="letter-title">
+    <h1>Vážené kolegium,<br><em>členové akademické obce,<br>vážené studentky a studenti</em></h1>
+  </div>
+
+  <!-- Letter body -->
+  <div class="letter-body">
+
+    <p>KPVZ v současné době čelí zásadním systémovým problémům, které považujeme za nutné adresovat otevřeně. Bez efektivní práce na jejich řešení nejsme v tuto chvíli schopni na fakultě realizovat vědeckou činnost v odpovídající kvalitě, a především zaštítit výuku a další aktivity v bakalářském programu Studium humanitní vzdělanosti (SHV). Pokud nedojde k vyjasnění a stabilizaci situace, budeme nuceni soustředit své kapacity primárně na udržování a zlepšování magisterského oboru Teoreticko-výzkumná psychologie (TVP).</p>
+
+    <p>Současný stav je důsledkem kumulace problémů ve vědecké, pedagogické i provozní oblasti. Všechny tyto oblasti jsme již delší dobu komunikovali s vedením interně, bohužel bez jasného efektu, a dochází spíše k posilování problémů než k jejich zklidnění. Tento otevřený dopis vnímáme jako cestu, jak na situaci upozornit a zároveň předejít případným spekulacím o našich motivacích a postojích.</p>
+
+    <p>Psychologie je věda, fungující primárně týmově a vyžadující dlouhodobější přípravu a profilaci. Kvalitní psychologický výzkum a výuka stojí na systematické práci se studujícími, na prostoru pro důslednou orientaci v oboru a na kontinuitě mezi kurzy a programy. Změny, které nyní na fakultě probíhají, se dějí způsobem, který tento průchod narušuje, ale i způsobem, který nám připadá nehodný akademického prostředí. Mnohé ze změn s námi nebyly konzultovány ani komunikovány, a pokud ano, naše postoje měly převážně konzultační váhu. Současné kroky dle našeho názoru narušují možnost studentů se v rámci SHV psychologii věnovat více do hloubky a skrze tento fakt tak zasahují i naši akademickou činnost.</p>
+
+    <p>V rámci SHV nás konkrétně znepokojuje zrušení odborných obhajob, navrhované změny v organizaci proseminářů, zásahy do výuky a návaznosti profilových předmětů, vracející se diskuse o navyšování kapacit kurzů a „klikacích závodech" a nejistota ohledně vedení diplomních seminářů. Dohromady oslabují naši možnost vést se studujícími odbornou diskusi a ohrožují návaznost SHV na magisterský program TVP. Minimálně způsob zavádění těchto změn vyvolává dlouhodobou nejistotu a obavy ohledně dalšího vývoje a změn. Velmi nejasná je možnost psychologické profilace v nově připravované akreditaci bakalářského programu, avšak naše vokalizované obavy jsou dlouhodobě prezentovány jako neopodstatněné.</p>
+
+    <p>Současně dochází k zásahům i do fungování magisterského programu TVP, a to včetně nastavování počtů přijímaných studujících bez předchozího projednání s garantem programu a vedoucím katedry, ale i dodatečných zásahů do výsledků přijímacího řízení, které oslabují závaznost odborného posouzení přijímací komise. Navýšené počty přitom výrazně překračují dosavadní praxi i reálné personální a organizační kapacity programu a jejich citlivé nastavení je klíčové pro zachování kvality výuky. Jsme připraveni diskutovat o možném navýšení počtu studujících, považujeme však za nezbytné, aby takové změny vznikaly ve spolupráci s katedrou a s ohledem na reálné možnosti výuky, ne autoritativně ze strany vedení.</p>
+
+    <p>V této souvislosti považujeme za nezbytné bezodkladně vyjasnit způsob využití prostředků z tzv. Fondu F, které jsou určeny na podporu psychologických programů. Tyto prostředky by měly sloužit ke zvládání zvýšených nároků spojených s vyšším počtem studujících a k rozvoji výuky. Očekáváme proto dohodu, že budou v odpovídající míře alokovány přímo na potřeby KPVZ, a to na základě transparentní komunikace a ve spolupráci s katedrou.</p>
+
+    <p>Za další problematický bod považujeme fungování etické komise, které je v současné podobě výrazně zatěžující a pro realizaci psychologického výzkumu limitující. Schvalovací proces je často nepředvídatelný, administrativně náročný a provázený požadavky, které neodpovídají běžným standardům v oboru psychologie. Projekty jsou opakovaně vraceny k přepracování na základě obtížně interpretovatelných a obtížně naplnitelných připomínek, přičemž při jejich posuzování převažuje důraz na minimalizaci i velmi hypotetických rizik, často bez adekvátního zohlednění zavedených etických a metodologických postupů v psychologii. Požadované úpravy přitom nekomplikují pouze samotný schvalovací proces, ale často i následnou realizaci výzkumu, což vede k jeho výraznému prodlužování a v některých případech i praktickému znemožnění. Současně konstatujeme, že katedra dosud nemá v etické komisi svého zástupce, a to ani přesto, že nominace byla předložena již před několika měsíci.</p>
+
+    <p>Bohužel tyto a další kumulované problémy nás nutí hledat cesty, jak udržet fungující skupinu akademiků zajišťující TVP a zároveň umožňující jim budovat kariéru dle řádu UK. Jednou z cest, kterou v současné době a za stávajícího stavu zvažujeme, je výrazná redukce aktivit týmu katedry KPVZ v bakalářském programu SHV. Naše působení v tomto programu přináší velké množství povinností nad rámec typického fakultního průměru, které jsme i přesto léta plnili rádi a viděli v participaci v programu smysl; bohužel jejich současnému vedení a směřování nerozumíme, pedagogicky a lidsky s nimi nesouzníme a zaváděnými a plánovanými změnami se z naší participace v SHV stává jen nutná povinnost bez jasného přínosu.</p>
+
+    <p>Věříme, že najdeme v těchto otázkách s vedením fakulty přijatelná řešení v duchu našich návrhů a budeme tak moci jako tým níže podepsaných akademických pracovníků pokračovat v realizaci výuky psychologie v programech na celém spektru studijních úrovní FHS a v úspěšné vědecké práci na fakultě.</p>
+
+    <div class="section-note">
+      Tento text pokládáme pouze za úvodní a shrnující. Podrobnější rozbor jednotlivých problémů ve vědecké, pedagogické a provozní oblasti, včetně konkrétních návrhů řešení, jsme zpracovali v samostatném dokumentu, který byl zaslán vedení fakulty a je k dispozici na vyžádání od vedení katedry. Nicméně obsahuje citlivější údaje a informace, a proto jsme se rozhodli jej nezveřejňovat společně s tímto dopisem.
+    </div>
+
+  </div>
+
+  <!-- Closing & signatories -->
+  <div class="letter-closing">
+    <p class="closing-phrase">S úctou,</p>
+
+    <div class="signatories">
+      <div class="signatory-group">
+        <div class="signatory-label">Vedení katedry</div>
+        <ul class="signatory-list signatory-primary">
+          <li>Lukáš Hejtmánek</li>
+          <li>Jitka Lindová</li>
+        </ul>
+      </div>
+
+      <div class="signatory-group">
+        <div class="signatory-label">Dále v abecedním pořadí</div>
+        <ul class="signatory-list">
+          <li>Klára Bártová</li>
+          <li>Jakub Fořt</li>
+          <li>Anna Francová</li>
+          <li>Kateřina Klapilová</li>
+          <li>Gabriela Málková</li>
+          <li>James Pfaus</li>
+          <li>Michal Sedlák</li>
+          <li>Miroslava Nováková Shoffelová</li>
+          <li>Iva Poláčková Šolcová</li>
+          <li>Martina Sebalo Vňuková</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <a href="https://fhspsych.cz" class="footer-back" target="_blank" rel="noopener">
+      <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M8 2L4 6l4 4"/>
+      </svg>
+      fhspsych.cz
+    </a>
+
+    <div class="footer-easter">
+      <a
+        href="https://paranoia.fhspsych.cz"
+        class="paranoia-link"
+        target="_blank"
+        rel="noopener"
+        data-tooltip="„to je přece paranoia""
+      >paranoia.fhspsych.cz</a>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>
