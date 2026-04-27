@@ -1,0 +1,12 @@
+{
+  "name": "kpvz-letter",
+  "version": "1.0.0",
+  "description": "KPVŽ Open Letter - Static HTML site with Vercel Web Analytics",
+  "private": true,
+  "scripts": {
+    "dev": "npx serve .",
+    "start": "npx serve ."
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}
