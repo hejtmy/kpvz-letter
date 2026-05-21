@@ -263,6 +263,87 @@
       background: var(--ink-soft);
     }
 
+    /* ─── Reactions ─── */
+
+    .reactions {
+      padding: 3rem 0 1rem;
+      border-top: 2px solid var(--ink);
+      position: relative;
+    }
+
+    .reactions::after {
+      content: '';
+      position: absolute;
+      top: 3px;
+      left: 0;
+      right: 0;
+      border-top: 1px solid var(--rule);
+    }
+
+    .reactions-heading {
+      font-family: 'Cormorant Upright', serif;
+      font-size: clamp(1.6rem, 4vw, 2.25rem);
+      font-weight: 300;
+      letter-spacing: 0.01em;
+      color: var(--ink);
+      margin: 1.5rem 0 0.75rem;
+    }
+
+    .reactions-intro {
+      font-style: italic;
+      color: var(--ink-muted);
+      font-size: 1rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .reaction {
+      margin-bottom: 3rem;
+      padding-left: 1.5rem;
+      border-left: 3px solid var(--rule);
+    }
+
+    .reaction:last-child {
+      margin-bottom: 0;
+    }
+
+    .reaction-source {
+      font-family: 'Instrument Sans', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.25rem;
+    }
+
+    .reaction-body p {
+      margin-bottom: 1.4rem;
+      text-align: justify;
+      hyphens: auto;
+      hanging-punctuation: first;
+      font-size: 1.05rem;
+      color: var(--ink-soft);
+    }
+
+    .reaction-body p:last-child {
+      margin-bottom: 0;
+    }
+
+    .reaction-salutation {
+      font-style: italic;
+      color: var(--ink-muted);
+    }
+
+    .reaction-signoff {
+      font-family: 'Instrument Sans', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      margin-top: 1.5rem;
+    }
+
     /* ─── Footer ─── */
 
     footer {
@@ -355,7 +436,8 @@
     .letter-title { animation: fadeUp 0.7s 0.2s ease both; }
     .letter-body  { animation: fadeUp 0.7s 0.35s ease both; }
     .letter-closing { animation: fadeUp 0.7s 0.5s ease both; }
-    footer        { animation: fadeUp 0.7s 0.6s ease both; }
+    .reactions    { animation: fadeUp 0.7s 0.6s ease both; }
+    footer        { animation: fadeUp 0.7s 0.7s ease both; }
 
     /* ─── Responsive ─── */
 
@@ -368,7 +450,8 @@
         padding: 2rem 0 1.5rem;
       }
 
-      .letter-body p {
+      .letter-body p,
+      .reaction-body p {
         text-align: left;
       }
 
@@ -389,7 +472,7 @@
     @media print {
       body::before { display: none; }
       body { background: white; font-size: 11pt; }
-      header, .doc-meta, .letter-title, .letter-body, .letter-closing, footer {
+      header, .doc-meta, .letter-title, .letter-body, .letter-closing, .reactions, footer {
         animation: none;
       }
     }
@@ -481,6 +564,26 @@
       </div>
     </div>
   </div>
+
+  <!-- Reactions -->
+  <section class="reactions">
+    <h2 class="reactions-heading">Reakce</h2>
+    <p class="reactions-intro">Na tomto místě postupně shromažďujeme reakce, které jsme na otevřený dopis obdrželi.</p>
+
+    <article class="reaction">
+      <div class="reaction-source">Komise pro etiku ve výzkumu FHS UK</div>
+      <div class="reaction-body">
+        <p class="reaction-salutation">Vážený pane kolego,</p>
+        <p>děkujeme za Vaši zpětnou vazbu k fungování Komise pro etiku ve výzkumu FHS UK (KEV FHS UK). Vnímáme ji jako důležitý podnět k další reflexi nastavení procesů i komunikace.</p>
+        <p>Rádi bychom zdůraznili, že připomínky, které KEV FHS UK formuluje, nejsou vedeny snahou komplikovat realizaci výzkumu, ale vycházejí z její základní role – tedy zajistit ochranu účastníků a účastnic výzkumu, minimalizovat potenciální rizika a posilovat důvěryhodnost výzkumných postupů. To zahrnuje i situace, kdy se může jednat o rizika na první pohled málo pravděpodobná, nicméně z etického hlediska relevantní, zejména pokud se týkají zranitelných skupin nebo citlivých dat.</p>
+        <p>Současně si dobře uvědomujeme, že v některých případech může docházet k napětí mezi oborovými standardy a širším institucionálním rámcem etického posuzování. Právě proto komise při své činnosti konzultuje některé problematické okruhy také s právními odborníky, aby její stanoviska byla nejen eticky, ale i právně opodstatněná a obhajitelná.</p>
+        <p>K otázce administrativní náročnosti a opakovaných revizí projektů bychom rádi doplnili, že cílem komise je vést žadatele k takové podobě projektu, která obstojí nejen v rámci interního schvalování, ale i při případném externím hodnocení či publikaci. Zároveň, abychom administrativní zátěž eliminovali, ve složitějších případech uskutečňujeme společná setkání se žadateli, která umožňují otevřenou diskusi nad konkrétními problémy, vysvětlení požadavků komise a hledání vyváženějších řešení v rámci jednotlivých projektů. Takové setkání aktuálně připravujeme také s pracovníky Vaší katedry.</p>
+        <p>Otázku zastoupení Vaší katedry v KEV FHS UK evidujeme, považujeme ji za důležitou pro posílení oborové perspektivy v rozhodovacím procesu a vítáme její další řešení v rámci příslušných orgánů. V tomto ohledu jsme připraveni poskytovat součinnost.</p>
+        <p>Děkujeme za Vaši spolupráci a věříme, že společným dialogem se podaří nastavit další postupy tak, aby byly zároveň eticky odpovědné i prakticky realizovatelné.</p>
+        <p class="reaction-signoff">Členky a členové KEV FHS UK</p>
+      </div>
+    </article>
+  </section>
 
   <!-- Footer -->
   <footer>
