@@ -161,11 +161,76 @@
       color: var(--ink-soft);
     }
 
-    /* ─── Letter body ─── */
+	    /* ─── Letter body ─── */
 
-    .letter-body {
-      padding-bottom: 3rem;
-    }
+	    .update-note {
+	      margin: 0 0 2.5rem;
+	      padding: 1.25rem 1.5rem;
+	      border-top: 2px solid var(--accent);
+	      border-bottom: 1px solid var(--rule);
+	      background: var(--paper-warm);
+	    }
+
+	    .update-label {
+	      font-family: 'Instrument Sans', sans-serif;
+	      font-size: 0.68rem;
+	      font-weight: 500;
+	      letter-spacing: 0.16em;
+	      text-transform: uppercase;
+	      color: var(--accent);
+	      margin-bottom: 0.65rem;
+	    }
+
+	    .update-note p {
+	      color: var(--ink-soft);
+	      font-size: 1.05rem;
+	      font-style: italic;
+	      line-height: 1.65;
+	    }
+
+	    .letter-disclosure {
+	      padding-bottom: 3rem;
+	    }
+
+	    .letter-disclosure summary {
+	      display: flex;
+	      align-items: center;
+	      justify-content: space-between;
+	      gap: 1rem;
+	      padding: 0.85rem 0;
+	      border-top: 1px solid var(--rule);
+	      border-bottom: 1px solid var(--rule);
+	      color: var(--ink-soft);
+	      cursor: pointer;
+	      font-family: 'Instrument Sans', sans-serif;
+	      font-size: 0.72rem;
+	      font-weight: 500;
+	      letter-spacing: 0.14em;
+	      list-style: none;
+	      text-transform: uppercase;
+	    }
+
+	    .letter-disclosure summary::-webkit-details-marker {
+	      display: none;
+	    }
+
+	    .letter-disclosure summary::after {
+	      content: '+';
+	      color: var(--accent);
+	      font-family: 'EB Garamond', Georgia, serif;
+	      font-size: 1.35rem;
+	      font-weight: 400;
+	      line-height: 1;
+	      transition: transform 0.2s ease;
+	    }
+
+	    .letter-disclosure[open] summary::after {
+	      transform: rotate(45deg);
+	    }
+
+	    .letter-body {
+	      padding: 2.25rem 0 0;
+	    }
 
     .salutation {
       font-style: italic;
@@ -434,8 +499,8 @@
     header      { animation: fadeUp 0.7s ease both; }
     .doc-meta   { animation: fadeUp 0.7s 0.1s ease both; }
     .letter-title { animation: fadeUp 0.7s 0.2s ease both; }
-    .letter-body  { animation: fadeUp 0.7s 0.35s ease both; }
-    .letter-closing { animation: fadeUp 0.7s 0.5s ease both; }
+	    .update-note, .letter-disclosure  { animation: fadeUp 0.7s 0.35s ease both; }
+	    .letter-closing { animation: fadeUp 0.7s 0.5s ease both; }
     .reactions    { animation: fadeUp 0.7s 0.6s ease both; }
     footer        { animation: fadeUp 0.7s 0.7s ease both; }
 
@@ -446,11 +511,19 @@
         padding: 0 1.25rem;
       }
 
-      header {
-        padding: 2rem 0 1.5rem;
-      }
+	      header {
+	        padding: 2rem 0 1.5rem;
+	      }
 
-      .letter-body p,
+	      .update-note {
+	        padding: 1rem 1.1rem;
+	      }
+
+	      .letter-disclosure summary {
+	        align-items: flex-start;
+	      }
+
+	      .letter-body p,
       .reaction-body p {
         text-align: left;
       }
@@ -472,10 +545,10 @@
     @media print {
       body::before { display: none; }
       body { background: white; font-size: 11pt; }
-      header, .doc-meta, .letter-title, .letter-body, .letter-closing, .reactions, footer {
-        animation: none;
-      }
-    }
+	      header, .doc-meta, .letter-title, .update-note, .letter-disclosure, .letter-body, .letter-closing, .reactions, footer {
+	        animation: none;
+	      }
+	    }
   </style>
 </head>
 <body>
@@ -502,14 +575,30 @@
   </div>
 
   <!-- Title -->
-  <div class="letter-title">
-    <h1>Vážené kolegium,<br><em>členové akademické obce,<br>vážené studentky a studenti</em></h1>
-  </div>
+	  <div class="letter-title">
+	    <h1>Vážené kolegium,<br><em>členové akademické obce,<br>vážené studentky a studenti</em></h1>
+	  </div>
 
-  <!-- Letter body -->
-  <div class="letter-body">
+	  <!-- Update -->
+	  <section class="update-note" aria-labelledby="update-heading">
+	    <div class="update-label" id="update-heading">Aktualizace k 1. 6. 2026</div>
 
-    <p>KPVŽ v současné době čelí zásadním systémovým problémům, které považujeme za nutné adresovat otevřeně. Bez efektivní práce na jejich řešení nejsme v tuto chvíli schopni na fakultě realizovat vědeckou činnost v odpovídající kvalitě, a především zaštítit výuku a další aktivity v bakalářském programu Studium humanitní vzdělanosti (SHV). Pokud nedojde k vyjasnění a stabilizaci situace, budeme nuceni soustředit své kapacity primárně na udržování a zlepšování magisterského oboru Teoreticko-výzkumná psychologie (TVP).</p>
+	    <p> Během května/června došlo k mnohým diskusím s vedením a dalšími zúčastněnými stranami, které vedly k navržení změn ve věci několika palčivých otázek, a také vyjasnění nejasností v postojích katedry a vedení fakulty, a upřesnění některých fakultních procesů. </p>
+      
+      <p> V současné chvíli tak v naději slibných zítřků pokračujeme v participaci na všech úrovních studia a doufáme v úspešné řešení problémů během příštího akademického roku 2026/2027. </p>
+
+      <p> Na tomto místě bychom rádi poděkovali všem, kteří nám během tohoto nepříjemného procesu ať již veřejně, či na pozadí, poskytli podporu, porozumění a konstruktivní zpětnou vazbu. Děkujeme! </p>
+
+      <p> Za katedru: Lukáš Hejtmánek </p>
+	  </section>
+
+	  <details class="letter-disclosure">
+	    <summary>Původní text otevřeného dopisu a reakce</summary>
+
+	    <!-- Letter body -->
+	    <div class="letter-body">
+
+	      <p>KPVŽ v současné době čelí zásadním systémovým problémům, které považujeme za nutné adresovat otevřeně. Bez efektivní práce na jejich řešení nejsme v tuto chvíli schopni na fakultě realizovat vědeckou činnost v odpovídající kvalitě, a především zaštítit výuku a další aktivity v bakalářském programu Studium humanitní vzdělanosti (SHV). Pokud nedojde k vyjasnění a stabilizaci situace, budeme nuceni soustředit své kapacity primárně na udržování a zlepšování magisterského oboru Teoreticko-výzkumná psychologie (TVP).</p>
 
     <p>Současný stav je důsledkem kumulace problémů ve vědecké, pedagogické i provozní oblasti. Všechny tyto oblasti jsme již delší dobu komunikovali s vedením interně, bohužel bez jasného efektu, a dochází spíše k posilování problémů než k jejich zklidnění. Tento otevřený dopis vnímáme jako cestu, jak na situaci upozornit a zároveň předejít případným spekulacím o našich motivacích a postojích.</p>
 
@@ -531,59 +620,60 @@
       Tento text pokládáme pouze za úvodní a shrnující. Podrobnější rozbor jednotlivých problémů ve vědecké, pedagogické a provozní oblasti, včetně konkrétních návrhů řešení, jsme zpracovali v samostatném dokumentu, který byl zaslán vedení fakulty a je k dispozici na vyžádání od vedení katedry. Nicméně obsahuje citlivější údaje a informace, a proto jsme se rozhodli jej nezveřejňovat společně s tímto dopisem.
     </div>
 
-  </div>
+	    </div>
 
-  <!-- Closing & signatories -->
-  <div class="letter-closing">
-    <p class="closing-phrase">S úctou,</p>
+	    <!-- Closing & signatories -->
+	    <div class="letter-closing">
+	      <p class="closing-phrase">S úctou,</p>
 
-    <div class="signatories">
-      <div class="signatory-group">
-        <div class="signatory-label">Vedení katedry</div>
-        <ul class="signatory-list signatory-primary">
-          <li>Lukáš Hejtmánek</li>
-          <li>Jitka Lindová</li>
-        </ul>
-      </div>
+	      <div class="signatories">
+	        <div class="signatory-group">
+	          <div class="signatory-label">Vedení katedry</div>
+	          <ul class="signatory-list signatory-primary">
+	            <li>Lukáš Hejtmánek</li>
+	            <li>Jitka Lindová</li>
+	          </ul>
+	        </div>
 
-      <div class="signatory-group">
-        <div class="signatory-label">Dále v abecedním pořadí</div>
-        <ul class="signatory-list">
-          <li>Klára Bártová</li>
-          <li>Jakub Fořt</li>
-          <li>Anna Francová</li>
-          <li>Juraj Jonáš</li>
-          <li>Kateřina Klapilová</li>
-          <li>Gabriela Málková</li>
-          <li>James Pfaus</li>
-          <li>Michal Sedlák</li>
-          <li>Miroslava Nováková Shoffelová</li>
-          <li>Iva Poláčková Šolcová</li>
-          <li>Martina Sebalo Vňuková</li>
-        </ul>
-      </div>
-    </div>
-  </div>
+	        <div class="signatory-group">
+	          <div class="signatory-label">Dále v abecedním pořadí</div>
+	          <ul class="signatory-list">
+	            <li>Klára Bártová</li>
+	            <li>Jakub Fořt</li>
+	            <li>Anna Francová</li>
+	            <li>Juraj Jonáš</li>
+	            <li>Kateřina Klapilová</li>
+	            <li>Gabriela Málková</li>
+	            <li>James Pfaus</li>
+	            <li>Michal Sedlák</li>
+	            <li>Miroslava Nováková Shoffelová</li>
+	            <li>Iva Poláčková Šolcová</li>
+	            <li>Martina Sebalo Vňuková</li>
+	          </ul>
+	        </div>
+	      </div>
+	    </div>
 
-  <!-- Reactions -->
-  <section class="reactions">
-    <h2 class="reactions-heading">Reakce</h2>
-    <p class="reactions-intro">Na tomto místě postupně shromažďujeme reakce, které jsme na otevřený dopis obdrželi.</p>
+	    <!-- Reactions -->
+	    <section class="reactions">
+	      <h2 class="reactions-heading">Reakce</h2>
+	      <p class="reactions-intro">Na tomto místě postupně shromažďujeme reakce, které jsme na otevřený dopis obdrželi.</p>
 
-    <article class="reaction">
-      <div class="reaction-source">Komise pro etiku ve výzkumu FHS UK</div>
-      <div class="reaction-body">
-        <p class="reaction-salutation">Vážený pane kolego,</p>
-        <p>děkujeme za Vaši zpětnou vazbu k fungování Komise pro etiku ve výzkumu FHS UK (KEV FHS UK). Vnímáme ji jako důležitý podnět k další reflexi nastavení procesů i komunikace.</p>
-        <p>Rádi bychom zdůraznili, že připomínky, které KEV FHS UK formuluje, nejsou vedeny snahou komplikovat realizaci výzkumu, ale vycházejí z její základní role – tedy zajistit ochranu účastníků a účastnic výzkumu, minimalizovat potenciální rizika a posilovat důvěryhodnost výzkumných postupů. To zahrnuje i situace, kdy se může jednat o rizika na první pohled málo pravděpodobná, nicméně z etického hlediska relevantní, zejména pokud se týkají zranitelných skupin nebo citlivých dat.</p>
-        <p>Současně si dobře uvědomujeme, že v některých případech může docházet k napětí mezi oborovými standardy a širším institucionálním rámcem etického posuzování. Právě proto komise při své činnosti konzultuje některé problematické okruhy také s právními odborníky, aby její stanoviska byla nejen eticky, ale i právně opodstatněná a obhajitelná.</p>
-        <p>K otázce administrativní náročnosti a opakovaných revizí projektů bychom rádi doplnili, že cílem komise je vést žadatele k takové podobě projektu, která obstojí nejen v rámci interního schvalování, ale i při případném externím hodnocení či publikaci. Zároveň, abychom administrativní zátěž eliminovali, ve složitějších případech uskutečňujeme společná setkání se žadateli, která umožňují otevřenou diskusi nad konkrétními problémy, vysvětlení požadavků komise a hledání vyváženějších řešení v rámci jednotlivých projektů. Takové setkání aktuálně připravujeme také s pracovníky Vaší katedry.</p>
-        <p>Otázku zastoupení Vaší katedry v KEV FHS UK evidujeme, považujeme ji za důležitou pro posílení oborové perspektivy v rozhodovacím procesu a vítáme její další řešení v rámci příslušných orgánů. V tomto ohledu jsme připraveni poskytovat součinnost.</p>
-        <p>Děkujeme za Vaši spolupráci a věříme, že společným dialogem se podaří nastavit další postupy tak, aby byly zároveň eticky odpovědné i prakticky realizovatelné.</p>
-        <p class="reaction-signoff">Členky a členové KEV FHS UK</p>
-      </div>
-    </article>
-  </section>
+	      <article class="reaction">
+	        <div class="reaction-source">Komise pro etiku ve výzkumu FHS UK</div>
+	        <div class="reaction-body">
+	          <p class="reaction-salutation">Vážený pane kolego,</p>
+	          <p>děkujeme za Vaši zpětnou vazbu k fungování Komise pro etiku ve výzkumu FHS UK (KEV FHS UK). Vnímáme ji jako důležitý podnět k další reflexi nastavení procesů i komunikace.</p>
+	          <p>Rádi bychom zdůraznili, že připomínky, které KEV FHS UK formuluje, nejsou vedeny snahou komplikovat realizaci výzkumu, ale vycházejí z její základní role – tedy zajistit ochranu účastníků a účastnic výzkumu, minimalizovat potenciální rizika a posilovat důvěryhodnost výzkumných postupů. To zahrnuje i situace, kdy se může jednat o rizika na první pohled málo pravděpodobná, nicméně z etického hlediska relevantní, zejména pokud se týkají zranitelných skupin nebo citlivých dat.</p>
+	          <p>Současně si dobře uvědomujeme, že v některých případech může docházet k napětí mezi oborovými standardy a širším institucionálním rámcem etického posuzování. Právě proto komise při své činnosti konzultuje některé problematické okruhy také s právními odborníky, aby její stanoviska byla nejen eticky, ale i právně opodstatněná a obhajitelná.</p>
+	          <p>K otázce administrativní náročnosti a opakovaných revizí projektů bychom rádi doplnili, že cílem komise je vést žadatele k takové podobě projektu, která obstojí nejen v rámci interního schvalování, ale i při případném externím hodnocení či publikaci. Zároveň, abychom administrativní zátěž eliminovali, ve složitějších případech uskutečňujeme společná setkání se žadateli, která umožňují otevřenou diskusi nad konkrétními problémy, vysvětlení požadavků komise a hledání vyváženějších řešení v rámci jednotlivých projektů. Takové setkání aktuálně připravujeme také s pracovníky Vaší katedry.</p>
+	          <p>Otázku zastoupení Vaší katedry v KEV FHS UK evidujeme, považujeme ji za důležitou pro posílení oborové perspektivy v rozhodovacím procesu a vítáme její další řešení v rámci příslušných orgánů. V tomto ohledu jsme připraveni poskytovat součinnost.</p>
+	          <p>Děkujeme za Vaši spolupráci a věříme, že společným dialogem se podaří nastavit další postupy tak, aby byly zároveň eticky odpovědné i prakticky realizovatelné.</p>
+	          <p class="reaction-signoff">Členky a členové KEV FHS UK</p>
+	        </div>
+	      </article>
+	    </section>
+	  </details>
 
   <!-- Footer -->
   <footer>
